@@ -1,18 +1,23 @@
 package _03_jars._1_intro_to_jars;
 
+import java.awt.Color;
+
+import org.jointheleague.graphical.robot.Robot;
 
 public class RobotInAJar {
 	
 	/* 1.   Create a String variable and initialize it to your name  */
-	
+	static String name = "Branson";
 	
 	/* If you did not make any syntax errors, there should be no red lines under your code. 
 	 * This is because the type String is part of the basic Java language that all programs  
 	 * can access without importing anything */
-	
+	public static void main(String[] args) {
+		draw();
+	}
 	
 	/* 2.   Now declare a Robot variable and create a new Robot  */
-
+static Robot k = new Robot();
 	
 	/* Even if you did not make any syntax errors, there should be a red line under the word Robot.
 	 * This is because the type Robot is not part of the basic Java language. If you want to use 
@@ -35,12 +40,12 @@ public class RobotInAJar {
 	  * 
 	  * Go to https://github.com/jointheleague/league-jars and download the robot.jar file from GitHub
 	  */ 
-
+//done
 	 /* 4.  Put the Robot JAR into this project */
   	 /* HOW?
 	 *  Drag the robot.jar file you downloaded from GitHub and drop it onto Eclipse, onto the current Java project.
 	 */
-	
+	//done
 	/* 5.  Add the Robot JAR to the project Build Path */	
 	/* 
 	 * The Robot JAR is in the project, but Eclipse can't use it until it is added to the Build Path.
@@ -49,16 +54,20 @@ public class RobotInAJar {
 	 * Click on the Libraries tab, and select "Add JAR".
 	 * Select the robot.jar file, then add it to the build path, apply and close.
 	 */
-	
+	//done
 	/* 6. Now if you hover your mouse over the word Robot, you will se anew option from the "quick fix" list: 
 	 * 				Import 'Robot (org.jointheleague.graphical.robot.Robot)
 	 * Select it. If all the red lines have disappeared, you can now complete the draw method below.
 	 * Run the program from the RobotInAJarRunner class and a shape should be drawn.
 	 */
-	
-	public void draw() {
+	//done
+	public static void draw() {
 		/*** Write code to make your robot draw a shape here ****/
-		
-		
+		k.penDown();
+		k.setPenColor(Color.GRAY);
+	for (int i = 0; i < 4; i++) {
+		k.move(100);
+		k.turn(90);
+	}
 	}
 }

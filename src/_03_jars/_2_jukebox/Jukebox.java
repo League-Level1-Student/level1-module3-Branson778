@@ -5,6 +5,8 @@ package _03_jars._2_jukebox;
  */
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -12,7 +14,10 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -20,8 +25,18 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
-
+public class Jukebox implements Runnable, ActionListener {
+	JFrame frame = new JFrame();
+	JPanel panel = new JPanel();
+	JButton start = new JButton();
+	JButton stop = new JButton();
+	JButton dd = new JButton();
+	JButton mp3 = new JButton();
+	JLabel label1 = new JLabel();
+	JLabel label2 = new JLabel();
+	static int stopbroadcaster = 0;
+	Song why = new Song("C:\\Users\\r_boo\\Downloads\\647890_Dance-Mr-Funnybones-LOOP.mp3Song");
+	Song why2 = new Song("mp3.mp3");
     public void run() {
 
 		// 1. Find an mp3 on your computer or on the Internet.
@@ -36,6 +51,30 @@ public class Jukebox implements Runnable {
 		 * cover is clicked, stop the currently playing song, and play the one
 		 * that was selected.
 		 */
+frame.setVisible(true);
+start.addActionListener(this);
+stop.addActionListener(this);
+start.setText("Start Song");
+stop.setText("Stop Song");
+dd.setText("Distraction Dance");
+mp3.setText("Have A Holly Jolly Christmas");
+dd.add(label1);
+mp3.add(label2);
+label1 = loadImage("C:/Users/r_boo/Downloads/DD.gif");
+label2 = loadImage("C:/Users/r_boo/Downloads/hjc.png");
+panel.add(start);
+panel.add(stop);
+
+frame.add(panel);
+frame.pack();
+for (int i = 0; i < 1; i++) {
+	why.play();
+	if(stopbroadcaster==0) {
+		i=0;
+	}
+	else if (stopbroadcaster==1) {
+		why.stop();
+	}}
     }
     
     
@@ -46,7 +85,21 @@ public class Jukebox implements Runnable {
 		return new JLabel(icon);
 	}
 
-}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(stop)) {
+			stopbroadcaster=1;
+		}
+		                               
+		if(e.getSource().equals(start)) {
+			stopbroadcaster=0;
+			System.out.println("Start");
+			}
+		}
+	}
+
+
 
 class Song {
 
