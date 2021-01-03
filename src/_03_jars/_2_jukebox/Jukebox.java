@@ -5,6 +5,7 @@ package _03_jars._2_jukebox;
  */
 
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
@@ -26,17 +27,20 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
 public class Jukebox implements Runnable, ActionListener {
+	Icon image = new ImageIcon("https://i.ytimg.com/vi/BHACKCNDMW8/maxresdefault.jpg");
+	Icon image2 = new ImageIcon("https://images-na.ssl-images-amazon.com/images/I/61MGAGEdVnL._AC_SX425_.jpg");
 	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
 	JButton start = new JButton();
 	JButton stop = new JButton();
-	JButton dd = new JButton();
-	JButton mp3 = new JButton();
+	JButton dd = new JButton(image);
+	JButton mp3 = new JButton(image2);
 	JLabel label1 = new JLabel();
 	JLabel label2 = new JLabel();
 	static int stopbroadcaster = 0;
-	Song why = new Song("C:\\Users\\r_boo\\Downloads\\647890_Dance-Mr-Funnybones-LOOP.mp3Song");
+	Song why = new Song("/headless/Downloads/647890_Dance-Mr-Funnybones-LOOP.mp3");
 	Song why2 = new Song("mp3.mp3");
+	Song why3 = new Song("/headless/Downloads/647890_Dance-Mr-Funnybones-LOOP.mp3");
     public void run() {
 
 		// 1. Find an mp3 on your computer or on the Internet.
@@ -51,20 +55,24 @@ public class Jukebox implements Runnable, ActionListener {
 		 * cover is clicked, stop the currently playing song, and play the one
 		 * that was selected.
 		 */
-frame.setVisible(true);
+
+    	frame.setVisible(true);
 start.addActionListener(this);
 stop.addActionListener(this);
+dd.addActionListener(this);
+mp3.addActionListener(this);
 start.setText("Start Song");
 stop.setText("Stop Song");
-dd.setText("Distraction Dance");
-mp3.setText("Have A Holly Jolly Christmas");
 dd.add(label1);
 mp3.add(label2);
-label1 = loadImage("C:/Users/r_boo/Downloads/DD.gif");
-label2 = loadImage("C:/Users/r_boo/Downloads/hjc.png");
+dd.setPreferredSize(new Dimension( 498,483));
+mp3.setPreferredSize(new Dimension (425,197));
+panel.add(dd);
+panel.add(mp3);
 panel.add(start);
 panel.add(stop);
-
+//label1.add(image);
+//impossible but done
 frame.add(panel);
 frame.pack();
 for (int i = 0; i < 1; i++) {
@@ -79,11 +87,11 @@ for (int i = 0; i < 1; i++) {
     
     
 	/* Use this method to add album covers to your Panel. */
-	private JLabel loadImage(String fileName) {
-		URL imageURL = getClass().getResource(fileName);
-		Icon icon = new ImageIcon(imageURL);
-		return new JLabel(icon);
-	}
+	//private JLabel loadImage(Icon image) {
+	//	URL imageURL = getClass().getResource(image);
+	//	Icon icon = new ImageIcon(imageURL);
+	//	return new JLabel(icon);
+//	}
 
 
 	@Override
@@ -96,7 +104,13 @@ for (int i = 0; i < 1; i++) {
 			stopbroadcaster=0;
 			System.out.println("Start");
 			}
+		if(e.getSource().equals(dd)) {
+			why=why3;
 		}
+		if(e.getSource().equals(mp3)) {
+			why=why2;
+		}
+	}
 	}
 
 

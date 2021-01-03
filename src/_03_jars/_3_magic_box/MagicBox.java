@@ -15,17 +15,20 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class MagicBox extends JPanel implements Runnable, MouseListener {
-
+JLabel textureflash = new JLabel();
+JFrame frame = new JFrame("The Magic Box contains many secrets...");
+JPanel panel = new JPanel();
 	/*
 	 * We are going to hide secrets within the magic box. 
 	 * When the user clicks on a secret place, stuff will happen.
 	 * 
 	 * 1. Make the frame respond to mouse clicks.
-	 * 
+	 *
 	 * 2. When the mouse is clicked, use the Media Palace (read the code in the magic_box package) to play sounds, 
 	 *    show images or speak.
 	 * 
@@ -51,12 +54,14 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	}
 
 	private void createUI() {
-		JFrame frame = new JFrame("The Magic Box contains many secrets...");
+	
 		frame.add(this);
-		setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
+		setPreferredSize(new Dimension(1000, 1000));
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		frame.addMouseListener(this);
+		frame.add(panel);
 	}
 
 	private void loadBackgroundImage() throws Exception {
@@ -82,13 +87,17 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		MediaPalace j = new MediaPalace();
+	textureflash =	j.loadImageFromWithinProject("placeholder.png");
+	panel.add(textureflash);
+	frame.pack();
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+	//	panel.remove(textureflash);
+	//	frame.pack();
 	}
 
 	@Override
