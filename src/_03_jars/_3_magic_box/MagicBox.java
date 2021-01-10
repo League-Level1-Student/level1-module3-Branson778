@@ -23,19 +23,22 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 JLabel textureflash = new JLabel();
 JFrame frame = new JFrame("The Magic Box contains many secrets...");
 JPanel panel = new JPanel();
+int lint =	-595775;
+int tint = -69429;
+int quadrant = -13815243;
 	/*
 	 * We are going to hide secrets within the magic box. 
 	 * When the user clicks on a secret place, stuff will happen.
 	 * 
 	 * 1. Make the frame respond to mouse clicks.
-	 *
+	 *done
 	 * 2. When the mouse is clicked, use the Media Palace (read the code in the magic_box package) to play sounds, 
 	 *    show images or speak.
-	 * 
+	 * done
 	 * 3. Choose 3 different locations on the background image.You can either use the mouse position, 
 	 *    or the color of the image, then decide what action the Media Palace should take in each case. 
 	 *     backgroundImage.getRGB(e.getX(), e.getY()) will give you the color of the current pixel.
-	 *     
+	 *     done!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	 *   
 	 *     
 	 */
@@ -62,6 +65,7 @@ JPanel panel = new JPanel();
 		frame.setVisible(true);
 		frame.addMouseListener(this);
 		frame.add(panel);
+		
 	}
 
 	private void loadBackgroundImage() throws Exception {
@@ -81,16 +85,27 @@ JPanel panel = new JPanel();
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+	
 	}
-
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		MediaPalace j = new MediaPalace();
-	textureflash =	j.loadImageFromWithinProject("placeholder.png");
-	panel.add(textureflash);
-	frame.pack();
+	if(backgroundImage.getRGB(e.getX(), e.getY())==lint) {
+		textureflash =	j.loadImageFromWithinProject("placeholder.png");
+		panel.add(textureflash);
+		frame.pack();
+	}
+	if(backgroundImage.getRGB(e.getX(), e.getY())==tint) {
+		textureflash = j.loadImageFromWithinProject("wet.jpg");
+		panel.add(textureflash);
+		frame.pack();
+	}
+	if(backgroundImage.getRGB(e.getX(), e.getY())==quadrant) {
+		textureflash = j.loadImageFromWithinProject("nightmares2.png");
+		panel.add(textureflash);
+		frame.pack();
+	}
 	}
 
 	@Override
