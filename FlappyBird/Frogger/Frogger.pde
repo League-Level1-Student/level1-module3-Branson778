@@ -15,7 +15,7 @@ void setup(){
 void draw(){
   background(0,0,0);
 fill(#31B714);
-ellipse(frogX, frogY, 47, 46);
+rect(frogX, frogY, 47, 46);
 xboundaries();
 yboundaries();
 car1.display();
@@ -55,7 +55,7 @@ public class car{
     if(carX<=0){
       carX=800;
     }
-    if(carX>=frogX-21 && carX<=frogX+21 && carY>=frogY-25 && carY<=frogY+25){
+    if(carX>=frogX-40 && carX<=frogX+40 && carY>=frogY-40 && carY<=frogY+40){
      fill(255,0,0);
       text("DEAD",150,300);
       textSize(87);
@@ -75,7 +75,7 @@ public class car{
     if(carX>=800){
       carX=0;
     }
-    if(carX>=frogX-21 && carX<=frogX+21 && carY>=frogY-25 && carY<=frogY+25){
+   if(carX>=frogX-40 && carX<=frogX+40 && carY>=frogY-40 && carY<=frogY+40){
      fill(255,0,0);
       text("DEAD",150,300);
       textSize(87);
